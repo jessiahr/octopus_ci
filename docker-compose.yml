@@ -8,15 +8,28 @@ nginx:
     - jenkins:jenkins
   volumes:
     - ./data_nginx/:/etc/nginx/conf.d:ro
+
 registry:
   image: registry:2
   environment:
     REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /registry_data
   volumes:
     - ./data_registry:/registry_data
-jenkins:
-  image: "jenkins:1.642.3"
-  ports:
-    - 50000:50000
+# jenkins:
+#   image: "jenkins:1.642.3"
+#   ports:
+#     - 50000:50000
+#   volumes:
+#     - ./data_jenkins:/var/jenkins_home
+
+
+drone:
+  image: "drone:0.4"
   volumes:
-    - ./data_jenkins:/var/jenkins_home
+    - /data_drone:/var/lib/drone
+    - /var/run/docker.sock:/var/run/docker.sock
+  ports: 
+    - 50000:50000
+  environment:
+    REMOTE_DRIVER: github
+    REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
