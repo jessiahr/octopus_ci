@@ -25,7 +25,7 @@ registry:
 
 
 drone:
-  image: "drone:0.4"
+  image: "drone/drone:0.4"
   volumes:
     - /data_drone:/var/lib/drone
     - /var/run/docker.sock:/var/run/docker.sock
