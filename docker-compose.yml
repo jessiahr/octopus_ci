@@ -5,7 +5,8 @@ nginx:
     - 443:443
   links:
     - registry:registry
-    - jenkins:jenkins
+    # - jenkins:jenkins
+    - drone:drone
   volumes:
     - ./data_nginx/:/etc/nginx/conf.d:ro
 
