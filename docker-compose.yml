@@ -29,8 +29,8 @@ drone:
   volumes:
     - /data_drone:/var/lib/drone
     - /var/run/docker.sock:/var/run/docker.sock
-  ports: 
-    - 8080:8000
+  # ports: 
+  #   - 8000:8080
   environment:
     REMOTE_DRIVER: github
     REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
