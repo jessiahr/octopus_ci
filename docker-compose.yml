@@ -34,3 +34,5 @@ drone:
   environment:
     REMOTE_DRIVER: github
     REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
+    DATABASE_DRIVER: sqlite3
+    DATABASE_CONFIG: /var/lib/drone/drone.sqlite
