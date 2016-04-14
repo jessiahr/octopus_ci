@@ -30,7 +30,7 @@ gogs:
     # - 10022:22
     # - 10080:3000 
   volumes:
-    - ./data_gogs:/data gogs/gogs
+    - ./data_gogs:/data 
 
 
 drone:
