@@ -7,6 +7,7 @@ nginx:
     - registry:registry
     # - jenkins:jenkins
     - drone:drone
+    - gogs:gogs
   volumes:
     - ./data_nginx/:/etc/nginx/conf.d:ro
 
@@ -22,6 +23,14 @@ registry:
 #     - 50000:50000
 #   volumes:
 #     - ./data_jenkins:/var/jenkins_home
+
+gogs: 
+  image: "gogs/gogs"
+  # ports:
+    # - 10022:22
+    # - 10080:3000 
+  volumes:
+    - ./data_gogs:/data gogs/gogs
 
 
 drone:
