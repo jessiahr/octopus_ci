@@ -33,10 +33,9 @@ drone:
   #  - 8001:8000
   environment:
     REMOTE_DRIVER: gitlab
-    REMOTE_CONFIG: "https://git.octopuscreative.com?client_id=a95d2a71e4f9270b8892ab2992a35679d362e253c961b00bb68030f088f74377&client_secret=c90602799d8b45b21361ee6e07919dac161e0e53c18ebc92bb6d1fee1fb9deaf"
+    REMOTE_CONFIG: "https://git.octopuscreative.com?client_id=a95d2a71e4f9270b8892ab2992a35679d362e253c961b00bb68030f088f74377&client_secret=c90602799d8b45b21361ee6e07919dac161e0e53c18ebc92bb6d1fee1fb9deaf&skip_verify=true"
     # REMOTE_DRIVER: github
     # REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
     # REMOTE_CONFIG: "https://github.com?client_id=e717754c2f131971bae4&client_secret=OCKXMYVDFDS2FZYFXOSEGMMD2PN3QZ6TAXZ7LA64EARRL4BPPYIA%3D%3D%3D%3D"
     DATABASE_DRIVER: sqlite3
     DATABASE_CONFIG: /var/lib/drone/drone.sqlite
-    
