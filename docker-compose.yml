@@ -1,6 +1,6 @@
 
 postgresql:
-  restart: always
+  # restart: always
   image: sameersbn/postgresql:9.4-21
   environment:
     - DB_USER=gitlab
@@ -11,7 +11,7 @@ postgresql:
     - ./data_psql_gitlab:/var/lib/postgresql
 
 gitlab:
-  restart: always
+  # restart: always
   image: "gitlab/gitlab-ce:latest"
   links:
     - redis:redisio
