@@ -16,6 +16,10 @@ gitlab:
   links:
     - redis:redisio
     - postgresql:postgresql
+   volumes:
+    - ./data_gitlab/etc:/etc/gitlab
+    - ./data_gitlab/var:/var/opt/gitlab
+    - ./data_gitlab/log:/var/log/gitlab
   ports:
     - "10080:80"
     - "10022:22"
@@ -57,8 +61,8 @@ gitlab:
     - IMAP_PASS=password
     - IMAP_SSL=true
     - IMAP_STARTTLS=false
-  volumes:
-    - ./data_gitlab:/home/git/data
+  # volumes:
+  #   - ./data_gitlab:/home/git/data
 redis:
   restart: always
   image: sameersbn/redis:latest
