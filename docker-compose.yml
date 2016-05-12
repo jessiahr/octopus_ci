@@ -1,6 +1,6 @@
 
 postgresql:
-  # restart: always
+  restart: always
   image: sameersbn/postgresql:9.4-21
   environment:
     - DB_USER=gitlab
@@ -11,7 +11,7 @@ postgresql:
     - ./data_psql_gitlab:/var/lib/postgresql
 
 gitlab:
-  # restart: always
+  restart: always
   image: "gitlab/gitlab-ce:latest"
   links:
     - redis:redisio
@@ -68,6 +68,43 @@ redis:
   image: sameersbn/redis:latest
   volumes:
     - ./redis:/var/lib/redis
+
+nginx:
+  restart: always
+  image: "nginx:1.9"
+  ports:
+    - 80:80
+    - 443:443
+  links:
+    # - registry:registry
+    # - jenkins:jenkins
+    - drone:drone
+    # - gogs:gogs
+    - gitlab:gitlab
+  volumes:
+    - ./data_nginx/:/etc/nginx/conf.d:ro
+
+
+
+drone:
+  restart: always
+  image: "drone/drone:0.4"
+  volumes:
+    - /data_drone:/var/lib/drone
+    - /var/run/docker.sock:/var/run/docker.sock
+  # ports: 
+  #  - 8001:8000
+  environment:
+    # REMOTE_DRIVER: gogs
+    REMOTE_DRIVER: gitlab
+    REMOTE_CONFIG: https://git.octop.us
+    # REMOTE_CONFIG: "https://git.octo.com?client_id=701b1ab7166eea684c467c38630a29e3f80553e0473491c1f6e2742be1388304&client_secret=78fa8b599aae1259d866acfc2eb19c5f835f0188059ba79555d8b626019d1f00&skip_verify=true"
+    # REMOTE_DRIVER: github
+    # REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
+    REMOTE_CONFIG: "https://github.com?client_id=e717754c2f131971bae4&client_secret=OCKXMYVDFDS2FZYFXOSEGMMD2PN3QZ6TAXZ7LA64EARRL4BPPYIA%3D%3D%3D%3D"
+    DATABASE_DRIVER: sqlite3
+    DATABASE_CONFIG: /var/lib/drone/drone.sqlite
+
 # Status API Training Shop Blog About
 # © 2016 GitHub, Inc. Terms Privacy Security Contact Help
 # # gitlab:
@@ -243,20 +280,6 @@ redis:
 #   #   --volume /srv/gitlab/data:/var/opt/gitlab \
 #   #   gitlab/gitlab-ce:latest
 
-nginx:
-  image: "nginx:1.9"
-  ports:
-    - 80:80
-    - 443:443
-  links:
-    # - registry:registry
-    # - jenkins:jenkins
-    - drone:drone
-    # - gogs:gogs
-    - gitlab:gitlab
-  volumes:
-    - ./data_nginx/:/etc/nginx/conf.d:ro
-
 # # registry:
 # #   image: registry:2
 # #   environment:
@@ -277,22 +300,3 @@ nginx:
 # #     # - 10080:3000 
 # #   volumes:
 # #     - ./data_gogs:/data 
-
-
-drone:
-  image: "drone/drone:0.4"
-  volumes:
-    - /data_drone:/var/lib/drone
-    - /var/run/docker.sock:/var/run/docker.sock
-  # ports: 
-  #  - 8001:8000
-  environment:
-    # REMOTE_DRIVER: gogs
-    REMOTE_DRIVER: gitlab
-    REMOTE_CONFIG: https://git.octop.us
-    # REMOTE_CONFIG: "https://git.octo.com?client_id=701b1ab7166eea684c467c38630a29e3f80553e0473491c1f6e2742be1388304&client_secret=78fa8b599aae1259d866acfc2eb19c5f835f0188059ba79555d8b626019d1f00&skip_verify=true"
-    # REMOTE_DRIVER: github
-    # REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
-    REMOTE_CONFIG: "https://github.com?client_id=e717754c2f131971bae4&client_secret=OCKXMYVDFDS2FZYFXOSEGMMD2PN3QZ6TAXZ7LA64EARRL4BPPYIA%3D%3D%3D%3D"
-    DATABASE_DRIVER: sqlite3
-    DATABASE_CONFIG: /var/lib/drone/drone.sqlite
