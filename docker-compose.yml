@@ -58,7 +58,7 @@ gitlab:
     - IMAP_SSL=true
     - IMAP_STARTTLS=false
   volumes:
-    - ./data_gitlab/data:/home/git/data
+    - ./data_gitlab:/home/git/data
 redis:
   restart: always
   image: sameersbn/redis:latest
