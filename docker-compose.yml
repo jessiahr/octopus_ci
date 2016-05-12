@@ -16,7 +16,7 @@ gitlab:
   links:
     - redis:redisio
     - postgresql:postgresql
-   volumes:
+  volumes:
     - ./data_gitlab/etc:/etc/gitlab
     - ./data_gitlab/var:/var/opt/gitlab
     - ./data_gitlab/log:/var/log/gitlab
