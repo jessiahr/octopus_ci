@@ -98,10 +98,11 @@ drone:
     # REMOTE_DRIVER: gogs
     REMOTE_DRIVER: gitlab
     REMOTE_CONFIG: https://git.octop.us
+    REMOTE_CONFIG: http://git.octop.us/?client_id=fe0ee011675caf514026ceeafbfa4958f14cb9a7e3f1c35c6140a4bc11f589f2&client_secret=8d4db2bc039053ebaf33067f967050b67011e6b3c7aa2278bd368f2ac05b2391
     # REMOTE_CONFIG: "https://git.octo.com?client_id=701b1ab7166eea684c467c38630a29e3f80553e0473491c1f6e2742be1388304&client_secret=78fa8b599aae1259d866acfc2eb19c5f835f0188059ba79555d8b626019d1f00&skip_verify=true"
     # REMOTE_DRIVER: github
     # REMOTE_CONFIG: "https://github.com?client_id=d22967983f8e4c0a4f58&client_secret=29fb94df262a32a167adecf691486c842dad46cd"
-    REMOTE_CONFIG: "https://github.com?client_id=e717754c2f131971bae4&client_secret=OCKXMYVDFDS2FZYFXOSEGMMD2PN3QZ6TAXZ7LA64EARRL4BPPYIA%3D%3D%3D%3D"
+    # REMOTE_CONFIG: "https://github.com?client_id=e717754c2f131971bae4&client_secret=OCKXMYVDFDS2FZYFXOSEGMMD2PN3QZ6TAXZ7LA64EARRL4BPPYIA%3D%3D%3D%3D"
     DATABASE_DRIVER: sqlite3
     DATABASE_CONFIG: /var/lib/drone/drone.sqlite
 
